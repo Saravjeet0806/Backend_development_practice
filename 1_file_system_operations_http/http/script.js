@@ -4,4 +4,8 @@ const server = http.createServer(function(req, res){  //to make server in port n
     res.end("hello world");
 })
 
-server.listen(3000); 
+const port = 3000
+server.listen(port, ()=>{
+    console.log("listening on port 3000");
+    
+}); 
