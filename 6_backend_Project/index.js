@@ -12,7 +12,13 @@ app.get('/', (req, res) => {
   fs.readdir(`./files`, function(err, files){
         res.render("index", {files : files});    //file read hone ke baad index.ejs render hoga
   })  
-  
 })
+
+app.post('/create', function(req, res){
+  fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function(err){
+    res.redirect('/'); // redirect to home page after file creation
+  })
+})
+
 
 app.listen(3000)
