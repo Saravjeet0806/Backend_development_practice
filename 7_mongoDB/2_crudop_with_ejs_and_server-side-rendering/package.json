@@ -1,9 +1,5 @@
 {
-  "dependencies": {
-    "express": "^5.1.0",
-    "mongoose": "^8.15.1"
-  },
-  "name": "crud_operations",
+  "name": "2_crudop_with_ejs_and_server-side-rendering",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -12,5 +8,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1"
+  }
 }
