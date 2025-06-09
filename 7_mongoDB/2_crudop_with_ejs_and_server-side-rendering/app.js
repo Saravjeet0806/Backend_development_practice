@@ -18,6 +18,19 @@ app.get('/read', async (req, res)=>{
     res.render('read', {users})
 })
 
+app.get('/edit/:userid', async (req, res)=>{
+    let user = await userModel.findOne({_id: req.params.userid});
+    res.render('edit', {user})
+})
+
+
+app.post('/update/:userid', async (req, res)=>{
+    let { image, name, email } = req.body; // Destructure the request body to get name, email, and image
+    let user = await userModel.findOneAndUpdate( {_id: req.params.userid}, {image,name,email} , {new: true})
+    res.redirect('/read')
+})
+
+
 app.post('/create', async (req, res)=>{
     let { name, email, image } = req.body; // Destructure the request body to get name, email, and image
     let createUser = await userModel.create({

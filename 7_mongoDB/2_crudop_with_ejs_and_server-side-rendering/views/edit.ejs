@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crude Operations with EJS</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src = "https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-full bg-zinc-900 p-10 text-white">
+        <div class="nav mb-10">
+            <a class="text-blue-500" href="/">Back Home</a>
+        </div>
+        <h1 class="text-3xl mb-3"> Update user</h1>
+        <form action="/update/<%= user._id %>" method="POST">
+            <input class="px-5 py-3 bg-transparent" type="text" name="name" placeholder="name" value="<%= user.name %>">    
+            <input class="px-5 py-3 bg-transparent" type="text" name="email" placeholder="email" value="<%= user.email %>"> 
+            <input class="px-5 py-3 bg-transparent" type="text" name="image" placeholder="image url " value="<%=user.image %>" >
+            <input type="submit" value="Update" class="px-5 py-3 bg-yellow-500 hover:bg-blue-700 text-white font-bold rounded">
+        </form>
+    </div>
+</body>
+</html>
