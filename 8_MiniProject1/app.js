@@ -16,8 +16,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', isLoggedIn, async (req, res) => { //protected route using isLoggedIn middleware
-    console.log(req.user)
-    res.render('login')
+    let user = await userModel.findOne({email: req.user.email});
+    res.render('profile', {user})
+
 })
 
 app.get('/login', (req, res) => {
@@ -61,7 +62,7 @@ app.post('/login', async (req, res) => {
         if (result) {
             let token = jwt.sign({ email: email, userid: user._id }, "secretkey")
             res.cookie('token', token)
-            res.status(200).send("Login successful")
+            res.status(200).redirect("/profile")
         }
         else res.redirect('/login')
     })
@@ -73,7 +74,7 @@ app.get('/logout', (req, res) => {
 })
 
 function isLoggedIn(req, res, next) { // Middleware to check if user is logged in.. it will be used in routes where we want to check if user is logged in or not eg making a post, liking a post etc.
-    if (req.cookies.token === '') res.send("You are not logged in")
+    if (req.cookies.token === '') res.redirect("/login")
 
     else {
         let data = jwt.verify(req.cookies.token, "secretkey")
